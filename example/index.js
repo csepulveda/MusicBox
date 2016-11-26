@@ -7,4 +7,4 @@ if (config.has('spotify'))
   options.spotify = config.get('spotify')
 
 const musicBox = new MusicBox(options)
-musicBox.search('Led Zeppelin')
+musicBox.search('Andromeda').catch(console.log)
