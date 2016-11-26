@@ -1,5 +1,5 @@
 const config = require('config')
-const MusicBox = require('../lib')
+const {MusicBox} = require('../lib')
 
 const options = {}
 

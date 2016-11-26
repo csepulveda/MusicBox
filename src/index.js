@@ -1,4 +1,4 @@
-export default class MusicBox {
+export class MusicBox {
   constructor (options) {
     this.options = options
   }
@@ -6,3 +6,5 @@ export default class MusicBox {
   search () {
   }
 }
+
+export default MusicBox
