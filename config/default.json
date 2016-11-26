@@ -3,5 +3,8 @@
     "clientId": "",
     "clientSecret": "",
     "accessToken": ""
+  },
+  "youTube": {
+    "apiKey": ""
   }
 }
