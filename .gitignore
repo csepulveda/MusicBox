@@ -3,3 +3,4 @@ npm-debug.log
 
 config/production.json
 lib/
+example/dist
