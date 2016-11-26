@@ -7,4 +7,10 @@ if (config.has('spotify'))
   options.spotify = config.get('spotify')
 
 const musicBox = new MusicBox(options)
-musicBox.search('Andromeda').catch(console.log)
+musicBox.search('Andromeda')
+.then((data) => {
+  if (data.length) {
+    musicBox.getArtistDetail(data[0].id, 'CL')
+  }
+})
+.catch(console.log)

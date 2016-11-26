@@ -10,16 +10,17 @@ export class MusicBox {
   search (query) {
     return new Promise((resolve, reject) => {
       if (!this.spotify) return reject(new Error('Missing Spotify Connection'))
-      resolve(this.searchSpotify(query))
+      this.searchSpotify(query).then(resolve)
     })
   }
 
-  searchSpotify (query) {
-    return this.spotify.search(query).then(this.log)
+  getArtistDetail(id, country) {
+    this.spotify.searchTopTracks(id, country)
+    this.spotify.searchRelatedArtists(id).then(console.log)
   }
 
-  log (data) {
-    console.log(JSON.stringify(data, null, 4))
+  searchSpotify (query) {
+    return this.spotify.search(query)
   }
 }
 

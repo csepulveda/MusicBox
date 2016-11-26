@@ -38,9 +38,22 @@ export default class Spotify {
     // });
   }
 
+  searchTopTracks (id, country) {
+    return this.spotifyApi.getArtistTopTracks(id, country).then((response) => {
+      //console.log(response)
+    })
+  }
+
+  searchRelatedArtists (id) {
+    return this.spotifyApi.getArtistRelatedArtists(id).then((response) => {
+      return this.readArtists(response)
+    })
+  }
+
   readArtists (data) {
-    if (data.body.artists && data.body.artists.items) {
-      return data.body.artists.items.map((artist) => {
+    const artists = Array.isArray(data.body.artists) ? data.body.artists : data.body.artists.items
+    if (artists) {
+      return artists.map((artist) => {
         return {
           id: artist.id,
           name: artist.name,
@@ -51,6 +64,8 @@ export default class Spotify {
           images: artist.images
         }
       })
+    } else {
+      return []
     }
   }
 }
