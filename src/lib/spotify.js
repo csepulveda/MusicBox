@@ -31,16 +31,11 @@ export default class Spotify {
     return new Promise((_, reject) => {
       reject(new Error('Missing Spotify Connection'))
     })
-    // .then(function(data) {
-    //   console.log('Search artists by "Love"', data.body);
-    // }, function(err) {
-    //   console.error(err);
-    // });
   }
 
   searchTopTracks (id, country) {
     return this.spotifyApi.getArtistTopTracks(id, country).then((response) => {
-      //console.log(response)
+      return this.readTracks(response)
     })
   }
 
@@ -62,6 +57,34 @@ export default class Spotify {
           genres: artist.genres,
           popularity: artist.popularity,
           images: artist.images
+        }
+      })
+    } else {
+      return []
+    }
+  }
+
+  readTracks (data) {
+    const tracks = data.body.tracks
+    if (tracks) {
+      return tracks.map((track) => {
+        return {
+          id: track.id,
+          name: track.name,
+          duration: track.duration_ms,
+          album: {
+            id: track.album.id,
+            name: track.album.name,
+            images: track.album.images,
+            type: track.album.type,
+            uri: track.album.uri
+          },
+          popularity: track.popularity,
+          preview: track.preview_url,
+          uri: track.uri,
+          discNumber: track.disc_number,
+          trackNumber: track.track_number,
+          externals: track.external_urls
         }
       })
     } else {

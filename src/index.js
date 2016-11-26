@@ -15,8 +15,15 @@ export class MusicBox {
   }
 
   getArtistDetail(id, country) {
-    this.spotify.searchTopTracks(id, country)
-    this.spotify.searchRelatedArtists(id).then(console.log)
+    return Promise.all([
+      this.spotify.searchTopTracks(id, country),
+      this.spotify.searchRelatedArtists(id)
+    ]).then(([topTracks, relatedArtists]) => {
+      return {
+        topTracks,
+        relatedArtists
+      }
+    })
   }
 
   searchSpotify (query) {

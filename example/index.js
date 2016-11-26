@@ -10,7 +10,7 @@ const musicBox = new MusicBox(options)
 musicBox.search('Andromeda')
 .then((data) => {
   if (data.length) {
-    musicBox.getArtistDetail(data[0].id, 'CL')
+    musicBox.getArtistDetail(data[0].id, 'CL').then(console.log)
   }
 })
 .catch(console.log)
