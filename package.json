@@ -14,5 +14,8 @@
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
     "babel-preset-stage-0": "^6.16.0"
+  },
+  "dependencies": {
+    "spotify-web-api-node": "^2.3.6"
   }
 }
